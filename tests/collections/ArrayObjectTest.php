@@ -105,4 +105,17 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
         $this->arrayObject->clear();
         $this->assertTrue($this->arrayObject->isEmpty());
     }
+    
+     public function testIteration() {
+        $initialData = array(5 => 'foo', 'bar'); 
+        $arrayObject = new ArrayObject($initialData);
+        
+        $actualData = array();
+        
+        foreach($arrayObject as $key => $value) {
+            $actualData[$key] = $value;
+        }
+        
+        $this->assertEquals($initialData, $actualData);
+    }
 }
