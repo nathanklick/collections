@@ -107,7 +107,7 @@ class ArrayObject implements Collection, \ArrayAccess {
      * @return boolean TRUE if collection contains no elements
      */
     public function isEmpty() {
-        return $this->count() == 0;
+        return $this->count() === 0;
     }
     
     /**
