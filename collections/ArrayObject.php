@@ -23,6 +23,16 @@ class ArrayObject implements Collection, \ArrayAccess {
     }
 
     /**
+     * Creates new collection using data from another collection
+     * 
+     * @param \tjsd\collections\Collection $initialData collection providing data to be used
+     * @return \self collection filled with given data
+     */
+    public static function fromCollection(Collection $initialData) {
+        return new self($initialData->toArray());
+    }
+    
+    /**
      * @return integer number of elements in collection
      */
     public function count() {

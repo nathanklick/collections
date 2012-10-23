@@ -14,6 +14,17 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($initialData, $newArrayObject->toArray());
     }
     
+    public function testFromCollection() {
+        $initialData = array('foo', 'bar');
+        $collection = $this->getMock('\tjsd\collections\Collection');
+        $collection->expects($this->once())
+            ->method('toArray')
+            ->will($this->returnValue($initialData));
+        
+        $newArrayObject = ArrayObject::fromCollection($collection);
+        $this->assertEquals($initialData, $newArrayObject->toArray());
+    }
+    
     public function testCountOnEmpty() {
         $this->assertEquals(0, $this->arrayObject->count());
     }
