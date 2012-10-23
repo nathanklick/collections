@@ -118,4 +118,10 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
         
         $this->assertEquals($initialData, $actualData);
     }
+    
+    public function testInitialDataEqualsArrayRepresentation() {
+        $initialData = array(5 => 'foo', 'bar');
+        $arrayObject = new ArrayObject($initialData);
+        $this->assertEquals($initialData, $arrayObject->toArray());
+    }
 }
