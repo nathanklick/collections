@@ -8,6 +8,12 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
         $this->arrayObject = new ArrayObject();
     }
 
+    public function test__constructWithInitialData() {
+        $initialData = array('foo', 'bar');
+        $newArrayObject = new ArrayObject($initialData);
+        $this->assertEquals($initialData, $newArrayObject->toArray());
+    }
+    
     public function testCountOnEmpty() {
         $this->assertEquals(0, $this->arrayObject->count());
     }
