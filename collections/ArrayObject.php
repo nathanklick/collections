@@ -19,7 +19,7 @@ class ArrayObject implements Collection, \ArrayAccess {
      * @param array $initialData if set, collection will be filled with this data
      */
     public function __construct(array $initialData = array()) {
-        $this->data = $initialData;
+        $this->data = $initialData;        
     }
 
     /**
@@ -39,12 +39,17 @@ class ArrayObject implements Collection, \ArrayAccess {
         return count($this->data);
     }
 
+    /**
+     * @return \tjsd\collections\ArrayIterator iterater over values in ArrayObject
+     */
     public function getIterator() {
         return new ArrayIterator($this->data);
     }
 
     /**
-     * @param type $offset
+     * Check if some element is assignet to offset
+     * 
+     * @param string|boolean|integer|float $offset
      * @return boolean TRUE if value is set to offset
      */
     public function offsetExists($offset) {
@@ -52,12 +57,30 @@ class ArrayObject implements Collection, \ArrayAccess {
     }
 
     /**
+     * Returns elemetn at given offset.
      * 
-     * @param type $offset
-     * @return type
+     * Returns value by reference so you can increment, decrement and manipulate
+     * with value without need to reassigne it to ArrayObject again.
+     * 
+     * <pre><code>
+     *  $array = array(0);
+     *  $array[0]++;
+     *  echo $array[0]; //=> int(1)
+     * </code></pre>
+     * 
+     * Array object operates alike:
+     * 
+     * <pre><code>
+     *  $arrayObject = new ArrayObject(array(0));
+     *  $arrayObject[0]++;
+     *  echo $arrayObject[0]; //=> int(1)
+     * </code></pre>
+     * 
+     * @param string|boolean|integer|float $offset
+     * @return mixed
      * @throws exceptions\OffsetNotFoundException
      */
-    public function offsetGet($offset) {
+    public function &offsetGet($offset) {
         if(!$this->offsetExists($offset)) {
             throw new exceptions\OffsetNotFoundException(sprintf('Offset %s is not set.', $offset));
         }

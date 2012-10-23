@@ -124,4 +124,10 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
         $arrayObject = new ArrayObject($initialData);
         $this->assertEquals($initialData, $arrayObject->toArray());
     }
+    
+    public function testReturningByReference() {
+        $arrayObject = new ArrayObject(array(0 => 0));        
+        $arrayObject[0]++;
+        $this->assertEquals(1, $arrayObject->offsetGet(0));
+    }
 }
