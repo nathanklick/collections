@@ -12,9 +12,8 @@
         }
     ],
     "autoload": {
-        "psr-0": { "tjsd": "" }
+        "psr-0": { "tjsd\\collections": "" }
     },
-    "target-dir": "tjsd",
     "require": {
         "php": ">=5.3.0"
     }
