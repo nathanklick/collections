@@ -11,6 +11,10 @@
             "email": "programmer@jakubtesarek.cz"
         }
     ],
+    "autoload": {
+        "psr-0": { "tjsd": "" }
+    },
+    "target-dir": "tjsd",
     "require": {
         "php": ">=5.3.0"
     }
