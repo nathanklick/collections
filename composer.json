@@ -1,0 +1,17 @@
+{
+    "name": "tjsd/collections",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "description": "Library providing collection classes which you can use instead of SPL data-structures.",
+    "keywords": ["collections", "array", "queue", "stack", "heap","deque","tree","hashmap"],
+    "homepage": "https://github.com/JakubTesarek/collections",
+    "authors": [
+        {
+            "name": "Jakub Tesárek",
+            "email": "programmer@jakubtesarek.cz"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
