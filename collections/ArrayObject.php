@@ -94,6 +94,7 @@ class ArrayObject implements Collection, \ArrayAccess {
      * 
      * @param string|boolean|integer|float|NULL $offset offset of new element
      * @param mixed $value new value
+     * @return NULL
      */
     public function offsetSet($offset, $value) {
         if(is_null($offset)) {
@@ -105,6 +106,7 @@ class ArrayObject implements Collection, \ArrayAccess {
 
     /**
      * @param string|boolean|integer|float $offset offset of element to be removed
+     * @return NULL
      */
     public function offsetUnset($offset) {
         unset($this->data[$offset]);
