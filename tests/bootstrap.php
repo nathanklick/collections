@@ -8,3 +8,5 @@ include DOCUMENT_ROOT . '/collections/Collection.php';
 include DOCUMENT_ROOT . '/collections/ArrayObject.php';
 include DOCUMENT_ROOT . '/collections/Iterator.php';
 include DOCUMENT_ROOT . '/collections/ArrayIterator.php';
+include DOCUMENT_ROOT . '/collections/Stack.php';
+include DOCUMENT_ROOT . '/collections/ArrayStack.php';
