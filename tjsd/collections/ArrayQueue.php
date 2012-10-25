@@ -14,11 +14,11 @@ class ArrayQueue implements Queue {
     }
     
     public function push($element) {
-        array_unshift($this->data, $element);
+        array_push($this->data, $element);
     }
     
     public function poll() {
-        array_shift($this->data);
+        return array_shift($this->data);
     }
     
     public function peek() {
