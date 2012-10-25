@@ -1,6 +1,6 @@
 <?php
 namespace tjsd\collections\exceptions;
 
-class OffsetNotFoundException extends \RuntimeException {
+class OffsetNotFoundException extends \RuntimeException implements CollectionException {
     
 }
