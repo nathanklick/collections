@@ -16,7 +16,7 @@ class ArrayBoundedStack extends ArrayStack {
     
     public function push($element) {
         if($this->isFull()) {
-            //TODO
+            throw new exceptions\FullCollectionException('Cannot push to full stack.');
         }
         parent::push($element);
     }
@@ -34,6 +34,10 @@ class ArrayBoundedStack extends ArrayStack {
     }
     
     public function fullness() {
-        return $this->size / $this->count();
+        if($this->count() == 0) {
+            return 0.0;
+        } else {
+            return $this->count() / $this->size();
+        }
     }
 }
