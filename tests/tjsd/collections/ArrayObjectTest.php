@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Jakub Tesárek <programmer@jakubtesarek.cz> (http://jakubtesarek.cz)
+ * @copyright Copyright (c) 2012, Jakub Tesárek
+ */
+
 namespace tjsd\collections;
 
 class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
