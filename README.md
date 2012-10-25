@@ -2,7 +2,7 @@ Collections
 ==============
 ... because SPL is shit and everybody knows.
 
-Contributors and potential contributor
+Contributors and potential contributors
 --------
 There are the possibilities:
 
