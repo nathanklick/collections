@@ -40,6 +40,9 @@ class ArrayStack implements Stack {
      * @return mixed
      */
     public function poll() {
+        if($this->isEmpty()) {
+            throw new exceptions\EmptyCollectionException('Cannot poll from empty stack.');
+        }
         return array_shift($this->data);
     }
     
@@ -49,6 +52,9 @@ class ArrayStack implements Stack {
      * @return mixed
      */
     public function peek() {
+        if($this->isEmpty()) {
+            throw new exceptions\EmptyCollectionException('Cannot peek empty stack.');
+        }
         return reset($this->data);
     }
     

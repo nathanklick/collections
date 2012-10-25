@@ -18,10 +18,16 @@ class ArrayQueue implements Queue {
     }
     
     public function poll() {
+        if($this->isEmpty()) {
+            throw new exceptions\EmptyCollectionException('Cannot poll from empty queue.');
+        }
         return array_shift($this->data);
     }
     
     public function peek() {
+        if($this->isEmpty()) {
+            throw new exceptions\EmptyCollectionException('Cannot peek empty queue.');
+        }
         return reset($this->data);
     }
 

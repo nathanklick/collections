@@ -97,4 +97,18 @@ class ArrayQueueTest extends \PHPUnit_Framework_TestCase {
         $arrayStack = new ArrayStack($initialData);
         $this->assertEquals(array_values($initialData), $arrayStack->toArray());
     }
+        
+    /**
+     * @expectedException \tjsd\collections\exceptions\EmptyCollectionException
+     */
+    public function testPollOnEmpty() {
+        $this->arrayQueue->poll();
+    }
+    
+    /**
+     * @expectedException \tjsd\collections\exceptions\EmptyCollectionException
+     */
+    public function testPeekOnEmpty() {
+        $this->arrayQueue->peek();
+    }
 }
