@@ -7,7 +7,7 @@
 namespace tjsd\collections;
 
 /**
- * General purpose collection interface.
+ * Implements overall functionality of array collection
  */
 abstract class ArrayCollectionAggregate implements Collection {
     protected $data;
