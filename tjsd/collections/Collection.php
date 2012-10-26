@@ -35,5 +35,10 @@ interface Collection extends \Countable, \IteratorAggregate {
      */
     public function clear();
     
+    /**
+     * Creates collection from data from given Collection
+     * 
+     * @param \tjsd\collections\Collection $initialData
+     */
     public static function fromCollection(Collection $initialData);
 }
