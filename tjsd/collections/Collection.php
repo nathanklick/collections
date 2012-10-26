@@ -34,4 +34,6 @@ interface Collection extends \Countable, \IteratorAggregate {
      * @return NULL
      */
     public function clear();
+    
+    public static function fromCollection(Collection $initialData);
 }
