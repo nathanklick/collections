@@ -7,7 +7,7 @@
 namespace tjsd\collections;
 
 class ArrayBoundedQueue extends ArrayQueue {
-   private $size;
+    private $size;
     
     public function __construct($size, array $initialData = array()) {
         parent::__construct($initialData);
