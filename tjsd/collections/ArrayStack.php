@@ -9,10 +9,8 @@ namespace tjsd\collections;
 /**
  * Array implementation of LIFO collection.
  */
-class ArrayStack implements Stack {
-    /** @var array */
-    private $data;
-    
+class ArrayStack extends ArrayCollectionAggregate implements Stack {
+
     /**
      * Creates and fills ArrayStack with data.
      * 
@@ -57,48 +55,6 @@ class ArrayStack implements Stack {
         }
         return reset($this->data);
     }
-    
-    /**
-     * Returns string representation of all elements in collection in serialize format.
-     * 
-     * @return string string represenation of collection
-     */
-    public function __toString() {
-        return serialize($this->toArray());
-    }
-    
-    /**
-     * Empty collection (remove all elements)
-     * 
-     * @return NULL
-     */
-    public function clear() {
-        $this->data = array();
-    }
-
-    /**
-     * @return integer number of elements in collection
-     */
-    public function count() {
-        return count($this->data);
-    }
-
-    /**
-     * Creates new iterator over values in Stack. When iterating, values will
-     * be returned in order they will be returned by series of calling poll();
-     * 
-     * @return \tjsd\collections\ArrayIterator iterater over values in stack
-     */
-    public function getIterator() {
-        return new ArrayIterator($this->toArray());
-    }
-    
-    /**
-     * @return boolean TRUE if collection contains no elements
-     */
-    public function isEmpty() {
-        return $this->count() === 0;
-    }
 
     /**
      * @return array all elements as an array
@@ -108,6 +64,6 @@ class ArrayStack implements Stack {
          * Array keys chnges during live cycle of queue. Using array_values() to
          * make sure that array will be indexed starting 0.
          */
-        return array_values($this->data);
+        return array_values(parent::toArray());
     }
 }

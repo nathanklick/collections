@@ -9,9 +9,7 @@ namespace tjsd\collections;
 /**
  * Array objects allows working with object as if it's an array.
  */
-class ArrayObject implements Collection, \ArrayAccess {
-    /** @var array */
-    private $data;
+class ArrayObject extends ArrayCollectionAggregate implements \ArrayAccess {
     
     /**
      * Creates new ArrayObject
@@ -21,31 +19,7 @@ class ArrayObject implements Collection, \ArrayAccess {
     public function __construct(array $initialData = array()) {
         $this->data = $initialData;        
     }
-
-    /**
-     * Creates new collection using data from another collection
-     * 
-     * @param \tjsd\collections\Collection $initialData collection providing data to be used
-     * @return \self collection filled with given data
-     */
-    public static function fromCollection(Collection $initialData) {
-        return new self($initialData->toArray());
-    }
     
-    /**
-     * @return integer number of elements in collection
-     */
-    public function count() {
-        return count($this->data);
-    }
-
-    /**
-     * @return \tjsd\collections\ArrayIterator iterater over values in ArrayObject
-     */
-    public function getIterator() {
-        return new ArrayIterator($this->data);
-    }
-
     /**
      * Check if some element is assignet to offset
      * 
@@ -110,37 +84,5 @@ class ArrayObject implements Collection, \ArrayAccess {
      */
     public function offsetUnset($offset) {
         unset($this->data[$offset]);
-    }
-    
-    /**
-     * Returns string representation of all elements in collection in serialize format.
-     * 
-     * @returns string string represenation of collection
-     */
-    public function __toString() {
-        return serialize($this->data);
-    }
-    
-    /**
-     * @return array all elements as an array
-     */
-    public function toArray() {
-        return $this->data;
-    }
-    
-    /**
-     * @return boolean TRUE if collection contains no elements
-     */
-    public function isEmpty() {
-        return $this->count() === 0;
-    }
-    
-    /**
-     * Empty collection (remove all elements)
-     * 
-     * @return NULL
-     */
-    public function clear() {
-        $this->data = array();
     }
 }

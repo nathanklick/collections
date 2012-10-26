@@ -9,10 +9,8 @@ namespace tjsd\collections;
 /**
  * Array implementation of FIFO collection.
  */
-class ArrayQueue implements Queue {
-    /** @var array */
-    private $data;
-    
+class ArrayQueue extends ArrayCollectionAggregate implements Queue {
+
     /**
      * Creates and fills ArrayStack with data.
      * 
@@ -59,48 +57,6 @@ class ArrayQueue implements Queue {
     }
 
     /**
-     * Returns string representation of all elements in collection in serialize format.
-     * 
-     * @returns string string represenation of collection
-     */
-    public function __toString() {
-        return serialize($this->toArray());
-    }
-
-    /**
-     * Empty collection (remove all elements)
-     * 
-     * @return NULL
-     */
-    public function clear() {
-        $this->data = array();
-    }
-
-    /**
-     * @return integer number of elements in collection
-     */
-    public function count() {
-        return count($this->data);
-    }
-
-    /**
-     * Creates new iterator over values in Queue. When iterating, values will
-     * be returned in order they will be returned by series of calling poll();
-     * 
-     * @return \tjsd\collections\ArrayIterator iterater over values in queue
-     */
-    public function getIterator() {
-        return new ArrayIterator($this->toArray());
-    }
-
-    /**
-     * @return boolean TRUE if collection contains no elements
-     */
-    public function isEmpty() {
-        return $this->count() === 0;
-    }
-
-    /**
      * @return array all elements as an array
      */
     public function toArray() {
@@ -108,6 +64,6 @@ class ArrayQueue implements Queue {
          * Array keys chnges during live cycle of queue. Using array_values() to
          * make sure that array will be indexed starting 0.
          */
-        return array_values($this->data);
+        return array_values(parent::toArray());
     }
 }
