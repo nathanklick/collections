@@ -26,7 +26,7 @@ class ArrayStack implements Stack {
     }
     
     /**
-     * Add new element into Stack
+     * Add new element to top of Stack.
      * 
      * @param mixed $element
      */
@@ -61,7 +61,7 @@ class ArrayStack implements Stack {
     /**
      * Returns string representation of all elements in collection in serialize format.
      * 
-     * @returns string string represenation of collection
+     * @return string string represenation of collection
      */
     public function __toString() {
         return serialize($this->toArray());
@@ -85,7 +85,7 @@ class ArrayStack implements Stack {
 
     /**
      * Creates new iterator over values in Stack. When iterating, values will
-     * be returned in order they will be returned by series of calling pop();
+     * be returned in order they will be returned by series of calling poll();
      * 
      * @return \tjsd\collections\ArrayIterator iterater over values in stack
      */
