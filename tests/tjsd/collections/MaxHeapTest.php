@@ -63,4 +63,3 @@ class MaxHeapTest extends BinaryHeapTest_aggregate {
 	$this->assertEquals(4, $resultHeap->count());
     }
 }
- 

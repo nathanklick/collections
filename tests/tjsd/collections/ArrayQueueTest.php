@@ -7,7 +7,7 @@
 namespace tjsd\collections;
 
 class ArrayQueueTest extends \PHPUnit_Framework_TestCase {
- protected $arrayQueue;
+    protected $arrayQueue;
 
     protected function setUp() {
         $this->arrayQueue = new ArrayQueue();
@@ -40,7 +40,9 @@ class ArrayQueueTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function test__toString() {
-        
+        $this->markTestIncomplete(
+          'This test has not been implemented yet.'
+        );
     }
 
     public function testClear() {

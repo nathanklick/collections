@@ -40,7 +40,9 @@ class ArrayStackTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function test__toString() {
-        
+        $this->markTestIncomplete(
+          'This test has not been implemented yet.'
+        );
     }
 
     public function testClear() {
