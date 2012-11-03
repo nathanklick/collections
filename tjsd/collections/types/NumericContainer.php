@@ -6,7 +6,7 @@
 
 namespace tjsd\collections\types;
 
-class NumericContainer implements Numeric, Comparable {
+class NumericContainer implements Comparable {
     private $numericValue;
     
     public function __construct($numericValue) {
