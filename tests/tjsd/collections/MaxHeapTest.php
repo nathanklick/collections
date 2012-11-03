@@ -13,6 +13,18 @@ class MaxHeapTest extends BinaryHeapTest_aggregate {
 	return new MaxHeap();
     }
     
+    public function test__constructWithInitialValuesCreatesHeapFilledWithData() {
+	$data = array(
+	    $this->element4,
+	    $this->element3,
+	    $this->element2,
+	    $this->element1,
+	);
+	
+	$heap = new MaxHeap($data);
+	$this->assertEquals($data, $heap->toArray());
+    }
+    
     public function testPollReturnsBiggestElement() {
 	//element2 is bigger than element1
 	$this->object->push($this->element1);
@@ -61,5 +73,18 @@ class MaxHeapTest extends BinaryHeapTest_aggregate {
 
 	$this->assertInstanceOf('\tjsd\collections\MaxHeap', $resultHeap);
 	$this->assertSame(4, $resultHeap->count());
+    }
+    
+    public function testPollAndHeapifyWithDataOnRightSideBiggerThanLeft() {
+	$this->object->push($this->element5);
+	$this->object->push($this->element7);
+	$this->object->push($this->element6);
+	$this->object->push($this->element4);
+	$this->object->push($this->element3);
+	$this->object->push($this->element2);
+	$this->object->push($this->element1);
+	
+	$this->assertSame($this->element7, $this->object->poll());
+	$this->assertSame($this->element6, $this->object->poll());
     }
 }

@@ -12,6 +12,9 @@ abstract class BinaryHeapTest_aggregate extends \PHPUnit_Framework_TestCase {
     protected $element2;
     protected $element3;
     protected $element4;
+    protected $element5;
+    protected $element6;
+    protected $element7;
     
     protected function setUp() {
 	$this->object = $this->createTestObject();
@@ -20,6 +23,9 @@ abstract class BinaryHeapTest_aggregate extends \PHPUnit_Framework_TestCase {
 	$this->element2 = new types\NumericContainer(2);
 	$this->element3 = new types\NumericContainer(3);
 	$this->element4 = new types\NumericContainer(4);
+	$this->element5 = new types\NumericContainer(5);
+	$this->element6 = new types\NumericContainer(6);
+	$this->element7 = new types\NumericContainer(7);
     }
     
     protected abstract function createTestObject();

@@ -50,9 +50,11 @@ abstract class BinaryHeap extends ArrayCollectionAggregate implements Heap {
 	    } else {
 		return self::leftChildIndex($index);
 	    }
-	} elseif (isset($this->data[self::rightChildIndex($index)])) {
-	    return self::rightChildIndex($index);
 	} else {
+	    /*
+	     * Because Heap is filled from left to right, it cant happend
+	     * that left index will be empty but right index not
+	     */
 	    return NULL;
 	}
     }
