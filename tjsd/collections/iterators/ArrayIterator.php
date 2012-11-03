@@ -9,14 +9,15 @@ namespace tjsd\collections\iterators;
 use \tjsd\collections\exceptions\EndOfIteratorException;
 
 /**
- * Iterator over array
+ * Iterator over given array.
  */
 class ArrayIterator implements Iterator {
+    
     /** @var array */
     private $data;
     
     /**
-     * @param array $initialData
+     * @param array $initialData data over which the iterator will iterate
      */
     public function __construct(array $initialData) {
         $this->data = $initialData;
@@ -24,8 +25,11 @@ class ArrayIterator implements Iterator {
     }
     
     /**
+     * {@inheritdoc}
+     * 
+     * @throws tjsd\collections\exceptions\EndOfIteratorException when trying to get value from iterator that reaches its end
+     *
      * @return mixed value at current pointer
-     * @throws exceptions\EndOfIteratorException when end of iterator is reached
      */
     public function current() {
         if(!$this->valid()) {
@@ -35,8 +39,11 @@ class ArrayIterator implements Iterator {
     }
 
     /**
+     * {@inheritdoc}
+     * 
+     * @throws tjsd\collections\exceptions\EndOfIteratorException when trying to get value from iterator that reaches its end
+     * 
      * @return string|boolean|integer|float key at current pointer
-     * @throws exceptions\EndOfIteratorException when end of iterator is reached
      */
     public function key() {
         if(!$this->valid()) {
@@ -46,9 +53,11 @@ class ArrayIterator implements Iterator {
     }
 
     /**
-     * Moves pointer to next value
+     * {@inheritdoc}
      * 
-     * @throws exceptions\EndOfIteratorException when end of iterator is reached
+     * @return void
+     * 
+     * @throws tjsd\collections\exceptions\EndOfIteratorException when trying to get value from iterator that reaches its end
      */
     public function next() {
         if(!$this->valid()) {
@@ -58,13 +67,17 @@ class ArrayIterator implements Iterator {
     }
 
     /**
-     * Rewinds iterator to first possition
+     * {@inheritdoc}
+     * 
+     * @return void
      */
     public function rewind() {
         reset($this->data);
     }
 
     /**
+     * {@inheritdoc}
+     * 
      * @return boolean TRUE if poiter of iterator is valid
      */
     public function valid() {
