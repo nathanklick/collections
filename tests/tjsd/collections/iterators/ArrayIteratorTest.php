@@ -19,7 +19,7 @@ class ArrayIteratorTest extends \PHPUnit_Framework_TestCase {
 
     public function testCurrentOnNotEmptyIteratorReturnsCurrentElement() {
         $iterator = new ArrayIterator(array('foo' => 'bar'));
-        $this->assertEquals('bar', $iterator->current());
+        $this->assertSame('bar', $iterator->current());
     }
     
     public function testKeyOnEmptyIteratorThrowsException() {
@@ -33,7 +33,7 @@ class ArrayIteratorTest extends \PHPUnit_Framework_TestCase {
 
     public function testKeyOnNotEmptyItertorReturnsCurrentKey() {
         $iterator = new ArrayIterator(array('foo' => 'bar'));
-        $this->assertEquals('foo', $iterator->key());
+        $this->assertSame('foo', $iterator->key());
     }
     
     public function testNextOnEmptyIteratorThrowException() {
@@ -48,16 +48,16 @@ class ArrayIteratorTest extends \PHPUnit_Framework_TestCase {
     public function testNextOnNotEmptyIteratorMovesIteratorToNextElement() {
         $iterator = new ArrayIterator(array('foo' => 'bar', 'oof' => 'rab'));
         $iterator->next();
-        $this->assertEquals('oof', $iterator->key());
-        $this->assertEquals('rab', $iterator->current());
+        $this->assertSame('oof', $iterator->key());
+        $this->assertSame('rab', $iterator->current());
     }
 
     public function testRewindRestartsIteratorToBeginning() {
         $iterator = new ArrayIterator(array('foo' => 'bar', 'oof' => 'rab'));
         $iterator->next();
         $iterator->rewind();
-        $this->assertEquals('foo', $iterator->key());
-        $this->assertEquals('bar', $iterator->current());
+        $this->assertSame('foo', $iterator->key());
+        $this->assertSame('bar', $iterator->current());
     }
 
     public function testValidOnEmptyIteratorReturnsFalse() {
@@ -80,6 +80,6 @@ class ArrayIteratorTest extends \PHPUnit_Framework_TestCase {
             $actualData[$key] = $value;
         }
         
-        $this->assertEquals($initialData, $actualData);
+        $this->assertSame($initialData, $actualData);
     }
 }
