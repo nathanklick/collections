@@ -17,9 +17,9 @@ class ArrayBoundedQueueTest extends \PHPUnit_Framework_TestCase {
         $arrayQueue = new ArrayBoundedQueue(1);
         $arrayQueue->push('foo');
 	
-	if($this->isFull()) {
-             throw new exceptions\FullCollectionException('Cannot push to full queue.');
-        }
+	$this->setExpectedException(
+	    '\tjsd\collections\exceptions\FullCollectionException', 'Cannot push to full queue.'
+	);
         $arrayQueue->push('bar');
     }
 
