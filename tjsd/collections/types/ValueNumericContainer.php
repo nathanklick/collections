@@ -6,20 +6,15 @@
 
 namespace tjsd\collections\types;
 
-class ValueNumericContainer implements Numeric {
-    private $numericValue;
+class ValueNumericContainer extends NumericContainer {
     private $value;
     
     public function __construct($numericValue, $value) {
-        $this->numericValue = $numericValue;
+	parent::__construct($numericValue);
         $this->value = $value;
     }
     
     public function getValue() {
         return $this->value;
-    }
-    
-    public function getNumericValue() {
-        return $this->numericValue;
     }
 }

@@ -23,4 +23,30 @@ class ValueNumericContainerTest extends \PHPUnit_Framework_TestCase {
 	$object = new ValueNumericContainer(-5, $value);
 	$this->assertSame($value, $object->getValue());
     }
+    
+        public function testCompareToContainerWithSameValueReturnsZero() {
+	$object = new ValueNumericContainer(2, 'foo');
+	$compared = new ValueNumericContainer(2, 'bar');
+	$this->assertSame(0, $object->compareTo($compared));
+    }
+    
+    public function testCompareToContainerWithSmallerValueReturnsOne() {
+	$object = new ValueNumericContainer(2, 'foo');
+	$compared = new ValueNumericContainer(1, 'bar');
+	$this->assertSame(1, $object->compareTo($compared));
+    }
+    
+    public function testCompareToContainerWithBiggerValueReturnsMinusOne() {
+	$object = new ValueNumericContainer(2, 'foo');
+	$compared = new ValueNumericContainer(3, 'bar');
+	$this->assertSame(-1, $object->compareTo($compared));
+    }
+    
+    public function testComparingToIncompatibleTypeThrowsException() {
+	$object = new ValueNumericContainer(0, 'foo');
+	$compared = $this->getMock('\tjsd\collections\types\Comparable');
+	
+	$this->setExpectedException('\InvalidArgumentException');
+	$object->compareTo($compared);
+    }
 }
