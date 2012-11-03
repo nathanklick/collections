@@ -60,6 +60,6 @@ class MinHeapTest extends BinaryHeapTest_aggregate {
 	$resultHeap = $this->object->merge($heap);
 
 	$this->assertInstanceOf('\tjsd\collections\MinHeap', $resultHeap);
-	$this->assertEquals(4, $resultHeap->count());
+	$this->assertSame(4, $resultHeap->count());
     }
 }

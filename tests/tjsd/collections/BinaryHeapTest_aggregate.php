@@ -38,16 +38,16 @@ abstract class BinaryHeapTest_aggregate extends \PHPUnit_Framework_TestCase {
     
     public function testElementIsRemovedAfterPoll() {
 	$this->object->push($this->element1);
-	$this->assertEquals(1, $this->object->count());
+	$this->assertSame(1, $this->object->count());
 	$this->object->poll();
-	$this->assertEquals(0, $this->object->count());
+	$this->assertSame(0, $this->object->count());
     }
     
     public function testElementIsNotRemovedAfterTop() {
 	$this->object->push($this->element1);
-	$this->assertEquals(1, $this->object->count());
+	$this->assertSame(1, $this->object->count());
 	$this->object->top();
-	$this->assertEquals(1, $this->object->count());
+	$this->assertSame(1, $this->object->count());
     }
     
     public function testElementPushedToEmptyHeapIsThanRetrieved() {
@@ -87,5 +87,11 @@ abstract class BinaryHeapTest_aggregate extends \PHPUnit_Framework_TestCase {
 	$this->object->push($this->element1);
 	$this->object->clear();
 	$this->assertTrue($this->object->isEmpty());
+    }
+    
+    public function test__toStringRetursSerializedAsArray() {
+        $this->markTestIncomplete(
+          'This test has not been implemented yet.'
+        );
     }
 }

@@ -13,62 +13,62 @@ class ArrayStackTest extends \PHPUnit_Framework_TestCase {
         $this->arrayStack = new ArrayStack();
     }
     
-    public function testPushPoll() {
+    public function testPollReturnsLastPushedElement() {
         $this->arrayStack->push('foo');
         $this->arrayStack->push('bar');
-        $this->assertEquals('bar', $this->arrayStack->poll());
+        $this->assertSame('bar', $this->arrayStack->poll());
     }
 
-    public function testPushPeek() {
+    public function testPeekReturnsLastInsertedElement() {
         $this->arrayStack->push('foo');
         $this->arrayStack->push('bar');
-        $this->assertEquals('bar', $this->arrayStack->poll());
+        $this->assertSame('bar', $this->arrayStack->poll());
     }
     
-    public function testPollRemovesElement() {
+    public function testPollRemovesLastInsertedElement() {
         $this->arrayStack->push('foo');
         $this->arrayStack->push('bar');
-        $this->assertEquals('bar', $this->arrayStack->poll());
-        $this->assertEquals('foo', $this->arrayStack->poll());
+        $this->assertSame('bar', $this->arrayStack->poll());
+        $this->assertSame('foo', $this->arrayStack->poll());
     }
     
     public function testPeekDoesntRemoveElement() {
         $this->arrayStack->push('foo');
         $this->arrayStack->push('bar');
-        $this->assertEquals('bar', $this->arrayStack->peek());
-        $this->assertEquals('bar', $this->arrayStack->peek());
+        $this->assertSame('bar', $this->arrayStack->peek());
+        $this->assertSame('bar', $this->arrayStack->peek());
     }
 
-    public function test__toString() {
+    public function test__toStringRetursSerializedArray() {
         $this->markTestIncomplete(
           'This test has not been implemented yet.'
         );
     }
 
-    public function testClear() {
+    public function testClearRemovesAllElements() {
         $this->arrayStack->push('foo');
         $this->arrayStack->clear();
         $this->assertTrue($this->arrayStack->isEmpty());
     }
 
-     public function testCountOnEmpty() {
-        $this->assertEquals(0, $this->arrayStack->count());
+     public function testCountOnEmptyStackReturnsZero() {
+        $this->assertSame(0, $this->arrayStack->count());
     }
     
-    public function testCountOnNotEmpty() {
+    public function testCountOnNotEmptyStackReturnsNumberOfElements() {
         $this->arrayStack->push('foo');
-        $this->assertEquals(1, $this->arrayStack->count());
+        $this->assertSame(1, $this->arrayStack->count());
     }
     
-    public function testGetIterator() {
+    public function testGetIteratorReturnIterator() {
         $this->assertInstanceOf('\tjsd\collections\Iterator', $this->arrayStack->getIterator());
     }
 
-    public function testIsEmptyOnEmpty() {
+    public function testIsEmptyOnEmptyStackReturnsTrue() {
         $this->assertTrue($this->arrayStack->isEmpty());
     }
     
-    public function testIsEmptyOnNonEmpty() {
+    public function testIsEmptyOnNonEmptyStackReturnsFalse() {
         $this->arrayStack->push('foo');
         $this->assertFalse($this->arrayStack->isEmpty());
     }
@@ -85,36 +85,36 @@ class ArrayStackTest extends \PHPUnit_Framework_TestCase {
             $resultData[] = $value;
         }
         
-        $this->assertEquals($iterationData, $resultData);
+        $this->assertSame($iterationData, $resultData);
     }
     
-    public function testToArray() {
+    public function testToArrayReturnsArrayWithReversedOrderOfElements() {
         $iterationData = array('foo', 'bar');
         
         foreach(array_reverse($iterationData) as $value) {
             $this->arrayStack->push($value);
         }
 
-        $this->assertEquals($iterationData, $this->arrayStack->toArray());
+        $this->assertSame($iterationData, $this->arrayStack->toArray());
     }
     
     public function testInitialDataEqualsArrayRepresentation() {
         $initialData = array(5 => 'foo', 'bar');
         $arrayStack = new ArrayStack($initialData);
-        $this->assertEquals(array_values($initialData), $arrayStack->toArray());
+        $this->assertSame(array_values($initialData), $arrayStack->toArray());
     }
     
-    /**
-     * @expectedException \tjsd\collections\exceptions\EmptyCollectionException
-     */
-    public function testPollOnEmpty() {
+    public function testPollOnEmptyStackThrowsException() {
+	$this->setExpectedException(
+	    '\tjsd\collections\exceptions\EmptyCollectionException', 'Cannot retrieve element. Stack is empty.'
+	);
         $this->arrayStack->poll();
     }
     
-    /**
-     * @expectedException \tjsd\collections\exceptions\EmptyCollectionException
-     */
-    public function testPeekOnEmpty() {
+    public function testPeekOnEmptyStackThrowsException() {
+	$this->setExpectedException(
+	    '\tjsd\collections\exceptions\EmptyCollectionException', 'Cannot retrieve element. Stack is empty.'
+	);
         $this->arrayStack->peek();
     }
 }

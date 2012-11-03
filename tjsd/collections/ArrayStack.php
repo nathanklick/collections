@@ -39,7 +39,7 @@ class ArrayStack extends ArrayCollectionAggregate implements Stack {
      */
     public function poll() {
         if($this->isEmpty()) {
-            throw new exceptions\EmptyCollectionException('Cannot poll from empty stack.');
+            throw new exceptions\EmptyCollectionException('Cannot retrieve element. Stack is empty.');
         }
         return array_shift($this->data);
     }
@@ -51,7 +51,7 @@ class ArrayStack extends ArrayCollectionAggregate implements Stack {
      */
     public function peek() {
         if($this->isEmpty()) {
-            throw new exceptions\EmptyCollectionException('Cannot peek empty stack.');
+            throw new exceptions\EmptyCollectionException('Cannot retrieve element. Stack is empty.');
         }
         return reset($this->data);
     }

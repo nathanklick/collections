@@ -39,7 +39,7 @@ class ArrayQueue extends ArrayCollectionAggregate implements Queue {
      */
     public function poll() {
         if($this->isEmpty()) {
-            throw new exceptions\EmptyCollectionException('Cannot poll from empty queue.');
+            throw new exceptions\EmptyCollectionException('Cannot retrieve element. Queue is empty.');
         }
         return array_shift($this->data);
     }
@@ -51,7 +51,7 @@ class ArrayQueue extends ArrayCollectionAggregate implements Queue {
      */
     public function peek() {
         if($this->isEmpty()) {
-            throw new exceptions\EmptyCollectionException('Cannot peek empty queue.');
+            throw new exceptions\EmptyCollectionException('Cannot retrieve element. Queue is empty.');
         }
         return reset($this->data);
     }

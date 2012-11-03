@@ -7,68 +7,69 @@
 namespace tjsd\collections;
 
 class ArrayBoundedStackTest extends \PHPUnit_Framework_TestCase {
-   public function testPushPoolWithEmptySpace() {
+   public function testPushPoolWithEmptySpaceInsertsElement() {
         $arrayStack = new ArrayBoundedStack(1);
         $arrayStack->push('foo');
-        $this->assertEquals('foo', $arrayStack->poll());
+        $this->assertSame('foo', $arrayStack->poll());
     }
     
-    /**
-     * @expectedException \tjsd\collections\exceptions\FullCollectionException
-     */
-    public function testPushWithNoEmptySpace() {
+    public function testPushWithNoEmptySpaceThrowsException() {
         $arrayStack = new ArrayBoundedStack(1);
         $arrayStack->push('foo');
+	
+	$this->setExpectedException(
+	    '\tjsd\collections\exceptions\FullCollectionException', 'Cannot push to full stack.'
+	);
         $arrayStack->push('bar');
     }
 
-    public function testSize() {
+    public function testSizeReturnsMaximalCapacity() {
         $arrayStack = new ArrayBoundedStack(5);
-        $this->assertEquals(5, $arrayStack->size());
+        $this->assertSame(5, $arrayStack->size());
     }
 
-    public function testIsFullOnFull() {
+    public function testIsFullOnFullStackReturnsTrue() {
         $arrayStack = new ArrayBoundedStack(1);
         $arrayStack->push('foo');
         $this->assertTrue($arrayStack->isFull());
     }
     
-    public function testIsFullOnNotFull() {
+    public function testIsFullOnNotFullStackReturnsFalse() {
         $arrayStack = new ArrayBoundedStack(1);
         $this->assertFalse($arrayStack->isFull());
     }
 
-    public function testRemainingOnEmptyCapacity() {
+    public function testRemainingCapacityOnEmptyStackReturnsMaximalCapacity() {
         $arrayStack = new ArrayBoundedStack(1);
-        $this->assertEquals(1, $arrayStack->remainingCapacity());
+        $this->assertSame(1, $arrayStack->remainingCapacity());
     }
     
-    public function testRemainingOnFullCapacity() {
+    public function testRemainingCapacityOnFullStackReturnsZero() {
         $arrayStack = new ArrayBoundedStack(1);
         $arrayStack->push('foo');
-        $this->assertEquals(0, $arrayStack->remainingCapacity());
+        $this->assertSame(0, $arrayStack->remainingCapacity());
     }
 
-    public function testRemainingOnNotFullNorEmptyCapacity() {
+    public function testRemainingCapacityOnNotFullNorEmptyStack() {
         $arrayStack = new ArrayBoundedStack(2);
         $arrayStack->push('foo');
-        $this->assertEquals(1, $arrayStack->remainingCapacity());
+        $this->assertSame(1, $arrayStack->remainingCapacity());
     }
     
-    public function testFullnessOnEmpty() {
+    public function testFullnessOnEmptyStackReturnsZero() {
         $arrayStack = new ArrayBoundedStack(1);
-        $this->assertEquals(0.0, $arrayStack->fullness());
+        $this->assertSame(0.0, $arrayStack->fullness());
     }
     
-    public function testFullnessOnFull() {
+    public function testFullnessOnFullStackReturnsOne() {
         $arrayStack = new ArrayBoundedStack(1);
         $arrayStack->push('foo');
-        $this->assertEquals(1.0, $arrayStack->fullness());
+        $this->assertSame(1.0, $arrayStack->fullness());
     }
     
-    public function testFullnessOnHalfFull() {
+    public function testFullnessOnHalfFullStackReturnsHalf() {
         $arrayStack = new ArrayBoundedStack(2);
         $arrayStack->push('foo');
-        $this->assertEquals(0.5, $arrayStack->fullness());
+        $this->assertSame(0.5, $arrayStack->fullness());
     }
 }

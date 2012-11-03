@@ -37,7 +37,7 @@ class ArrayBoundedStack extends ArrayStack {
         if($this->count() == 0) {
             return 0.0;
         } else {
-            return $this->count() / $this->size();
+            return (float) $this->count() / $this->size();
         }
     }
 }

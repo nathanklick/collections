@@ -12,13 +12,14 @@ class ArrayBoundedQueueTest extends \PHPUnit_Framework_TestCase {
         $arrayQueue->push('foo');
         $this->assertEquals('foo', $arrayQueue->poll());
     }
-    
-    /**
-     * @expectedException \tjsd\collections\exceptions\FullCollectionException
-     */
+
     public function testPushWithNoEmptySpace() {
         $arrayQueue = new ArrayBoundedQueue(1);
         $arrayQueue->push('foo');
+	
+	if($this->isFull()) {
+             throw new exceptions\FullCollectionException('Cannot push to full queue.');
+        }
         $arrayQueue->push('bar');
     }
 

@@ -13,13 +13,13 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
         $this->arrayObject = new ArrayObject();
     }
 
-    public function test__constructWithInitialData() {
+    public function test__constructWithInitialDataFillsArrayWithData() {
         $initialData = array('foo', 'bar');
         $newArrayObject = new ArrayObject($initialData);
-        $this->assertEquals($initialData, $newArrayObject->toArray());
+        $this->assertSame($initialData, $newArrayObject->toArray());
     }
     
-    public function testFromCollection() {
+    public function testFromCollectionCreatesNewArrayObject() {
         $initialData = array('foo', 'bar');
         $collection = $this->getMock('\tjsd\collections\Collection');
         $collection->expects($this->once())
@@ -27,63 +27,64 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
             ->will($this->returnValue($initialData));
         
         $newArrayObject = ArrayObject::fromCollection($collection);
-        $this->assertEquals($initialData, $newArrayObject->toArray());
+        $this->assertSame($initialData, $newArrayObject->toArray());
     }
     
-    public function testCountOnEmpty() {
-        $this->assertEquals(0, $this->arrayObject->count());
+    public function testCountOnEmptyArrayReturnsZero() {
+        $this->assertSame(0, $this->arrayObject->count());
     }
     
-    public function testCountOnNotEmpty() {
+    public function testCountOnNotEmptyArrayRetunsNumberOfElements() {
         $this->arrayObject->offsetSet('existingOffset', 'foo');
-        $this->assertEquals(1, $this->arrayObject->count());
+        $this->assertSame(1, $this->arrayObject->count());
     }
 
-    public function testGetIterator() {
+    public function testGetIteratorReturnsIterator() {
         $this->assertInstanceOf('\tjsd\collections\Iterator', $this->arrayObject->getIterator());
     }
 
-    public function testExistingOffsetExists() {
+    public function testOffsetExistsOnExistingOffsetReturnsTrue() {
         $this->arrayObject->offsetSet('existingOffset', 'foo');
         $this->assertTrue($this->arrayObject->offsetExists('existingOffset'));
     }
     
-    public function testNonExistingOffsetExists() {
+    public function testOffsetExistsOnNotExistingOffsetReturnsFalse() {
         $this->assertFalse($this->arrayObject->offsetExists('nonExistingOffset'));
     }
 
-    public function testOffsetSetAndGet() {
+    public function testOffsetSetSetsOffset() {
         $this->arrayObject->offsetSet('existingOffset', 'foo');
-        $this->assertEquals('foo', $this->arrayObject->offsetGet('existingOffset'));
+        $this->assertSame('foo', $this->arrayObject->offsetGet('existingOffset'));
     }
 
-    /**
-     * @expectedException \tjsd\collections\exceptions\OffsetNotFoundException
-     */
-    public function testNonExistingOffsetGet() {
+    public function testOffsetGetOnNotExistingOffsetThrowsException() {
+	$this->setExpectedException(
+	    '\tjsd\collections\exceptions\OffsetNotFoundException', 'Offset nonExistingOffset is not set.'
+	);
         $this->arrayObject->offsetGet('nonExistingOffset');
     }
     
-    /**
-     * @expectedException \tjsd\collections\exceptions\OffsetNotFoundException
-     */
-    public function testOffsetUnsetAndGet() {
+    public function testOffsetUnsetUnsetsOffset() {
         $this->arrayObject->offsetSet('existingOffset', 'foo');
         $this->arrayObject->offsetUnset('existingOffset');
+	
+	$this->setExpectedException(
+	    '\tjsd\collections\exceptions\OffsetNotFoundException', 'Offset existingOffset is not set.'
+	);
         $this->arrayObject->offsetGet('existingOffset');
     }
 
-    public function test__toString() {
+    public function test__toStringReturnsSerializedArray() {
         $expected = 'a:3:{s:3:"foo";s:3:"bar";i:1;b:1;i:2;a:1:{i:0;a:1:{i:0;b:0;}}}';
         
         $this->arrayObject['foo'] = 'bar';
         $this->arrayObject[1] = TRUE;
         $this->arrayObject[] = array(array(FALSE));
         
-        $this->assertEquals($expected, $this->arrayObject->__toString());
+        $this->assertSame($expected, $this->arrayObject->__toString());
     }
 
-    public function testToArray() {
+    public function testToArrayReturnsArrayWithPreservedKeys() {
         $expected = array();
         $expected['foo'] = 'bar';
         $expected[1] = TRUE;
@@ -93,19 +94,19 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
         $this->arrayObject[1] = TRUE;
         $this->arrayObject[] = array(array(FALSE));
         
-        $this->assertEquals($expected, $this->arrayObject->toArray());
+        $this->assertSame($expected, $this->arrayObject->toArray());
     }
 
-    public function testIsEmptyOnEmpty() {
+    public function testIsEmptyOnEmptyArrayReturnsTrue() {
         $this->assertTrue($this->arrayObject->isEmpty());
     }
     
-    public function testIsEmptyOnNonEmpty() {
+    public function testIsEmptyOnNotEmptyArrayReturnsFalse() {
         $this->arrayObject->offsetSet('existingOffset', 'foo');
         $this->assertFalse($this->arrayObject->isEmpty());
     }
 
-    public function testClear() {
+    public function testClearRemovesAllElements() {
         $this->arrayObject->offsetSet('existingOffset', 'foo');
         $this->arrayObject->clear();
         $this->assertTrue($this->arrayObject->isEmpty());
@@ -121,18 +122,18 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
             $actualData[$key] = $value;
         }
         
-        $this->assertEquals($initialData, $actualData);
+        $this->assertSame($initialData, $actualData);
     }
     
     public function testInitialDataEqualsArrayRepresentation() {
         $initialData = array(5 => 'foo', 'bar');
         $arrayObject = new ArrayObject($initialData);
-        $this->assertEquals($initialData, $arrayObject->toArray());
+        $this->assertSame($initialData, $arrayObject->toArray());
     }
     
-    public function testReturningByReference() {
+    public function testElementsAreReturnedAsReference() {
         $arrayObject = new ArrayObject(array(0 => 0));        
         $arrayObject[0]++;
-        $this->assertEquals(1, $arrayObject->offsetGet(0));
+        $this->assertSame(1, $arrayObject->offsetGet(0));
     }
 }

@@ -8,48 +8,51 @@ namespace tjsd\collections;
 
 class ArrayIteratorTest extends \PHPUnit_Framework_TestCase {
 
-    /**
-     * @expectedException \tjsd\collections\exceptions\EndOfIteratorException
-     */
-    public function testCurrentOnEmpty() {
+    public function testCurrentOnEmptyIteratorThrowsException() {
         $iterator = new ArrayIterator(array());
+	
+	$this->setExpectedException(
+	    '\tjsd\collections\exceptions\EndOfIteratorException', 'Iterator reaches its end. Rewind interator.'
+	);
         $iterator->current();
     }
 
-    public function testCurrentOnNonEmpty() {
+    public function testCurrentOnNotEmptyIteratorReturnsCurrentElement() {
         $iterator = new ArrayIterator(array('foo' => 'bar'));
         $this->assertEquals('bar', $iterator->current());
     }
     
-    /**
-     * @expectedException \tjsd\collections\exceptions\EndOfIteratorException
-     */
-    public function testKeyOnEmpty() {
-        $iterator = new ArrayIterator(array());
+    public function testKeyOnEmptyIteratorThrowsException() {
+	$iterator = new ArrayIterator(array());
+	
+	$this->setExpectedException(
+	    '\tjsd\collections\exceptions\EndOfIteratorException', 'Iterator reaches its end. Rewind interator.'
+	);
         $iterator->key();
     }
 
-    public function testKeyOnNonEmpty() {
+    public function testKeyOnNotEmptyItertorReturnsCurrentKey() {
         $iterator = new ArrayIterator(array('foo' => 'bar'));
         $this->assertEquals('foo', $iterator->key());
     }
-
-    /**
-     * @expectedException \tjsd\collections\exceptions\EndOfIteratorException
-     */
-    public function testNextOnEmpty() {
-        $iterator = new ArrayIterator(array());
+    
+    public function testNextOnEmptyIteratorThrowException() {
+	$iterator = new ArrayIterator(array());
+	
+	$this->setExpectedException(
+	    '\tjsd\collections\exceptions\EndOfIteratorException', 'Iterator reaches its end. Rewind interator.'
+	);
         $iterator->next();
     }
 
-    public function testNextOnNonEmpty() {
+    public function testNextOnNotEmptyIteratorMovesIteratorToNextElement() {
         $iterator = new ArrayIterator(array('foo' => 'bar', 'oof' => 'rab'));
         $iterator->next();
         $this->assertEquals('oof', $iterator->key());
         $this->assertEquals('rab', $iterator->current());
     }
 
-    public function testRewind() {
+    public function testRewindRestartsIteratorToBeginning() {
         $iterator = new ArrayIterator(array('foo' => 'bar', 'oof' => 'rab'));
         $iterator->next();
         $iterator->rewind();
@@ -57,12 +60,12 @@ class ArrayIteratorTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('bar', $iterator->current());
     }
 
-    public function testValidOnEmpty() {
+    public function testValidOnEmptyIteratorReturnsFalse() {
         $iterator = new ArrayIterator(array());
         $this->assertFalse($iterator->valid());
     }
 
-    public function testValidOnNonEmpty() {
+    public function testValidOnNewNotEmptyIteratorReturnsTrue() {
         $iterator = new ArrayIterator(array('foo' => 'bar'));
         $this->assertTrue($iterator->valid());
     }
