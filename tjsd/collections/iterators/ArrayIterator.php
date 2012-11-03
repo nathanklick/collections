@@ -4,7 +4,9 @@
  * @copyright Copyright (c) 2012, Jakub Tesárek
  */
 
-namespace tjsd\collections;
+namespace tjsd\collections\iterators;
+
+use \tjsd\collections\exceptions\EndOfIteratorException;
 
 /**
  * Iterator over array
@@ -27,7 +29,7 @@ class ArrayIterator implements Iterator {
      */
     public function current() {
         if(!$this->valid()) {
-            throw new exceptions\EndOfIteratorException('Iterator reaches its end. Rewind interator.');
+            throw new EndOfIteratorException('Iterator reaches its end. Rewind interator.');
         }
         return current($this->data);
     }
@@ -38,7 +40,7 @@ class ArrayIterator implements Iterator {
      */
     public function key() {
         if(!$this->valid()) {
-            throw new exceptions\EndOfIteratorException('Iterator reaches its end. Rewind interator.');
+            throw new EndOfIteratorException('Iterator reaches its end. Rewind interator.');
         }
         return key($this->data);
     }
@@ -50,7 +52,7 @@ class ArrayIterator implements Iterator {
      */
     public function next() {
         if(!$this->valid()) {
-            throw new exceptions\EndOfIteratorException('Iterator reaches its end. Rewind interator.');
+            throw new EndOfIteratorException('Iterator reaches its end. Rewind interator.');
         }
         next($this->data);
     }

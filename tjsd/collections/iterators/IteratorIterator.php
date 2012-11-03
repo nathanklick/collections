@@ -4,14 +4,14 @@
  * @copyright Copyright (c) 2012, Jakub Tesárek
  */
 
-namespace tjsd\collections;
+namespace tjsd\collections\iterators;
 
-abstract class IteratorIterator implements Iterator {
-    private $iterator;
+abstract class IteratorIterator implements Iterator, \OuterIterator {
+    protected $iterator;
     
     public function __construct(Iterator $internalIterator) {
 	$this->iterator = $internalIterator;
-	$this->rewind();
+	$this->iterator->rewind();
     }
     
     public function current() {
@@ -34,4 +34,7 @@ abstract class IteratorIterator implements Iterator {
         return $this->iterator->valid();
     }
     
+    public function getInnerIterator() {
+	return $this->iterator;
+    }
 }

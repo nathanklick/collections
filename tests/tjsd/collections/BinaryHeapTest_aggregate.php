@@ -79,7 +79,7 @@ abstract class BinaryHeapTest_aggregate extends \PHPUnit_Framework_TestCase {
     }
     
     public function testGetIteratorReturnsIterator() {
-	 $this->assertInstanceOf('\tjsd\collections\Iterator', $this->object->getIterator());
+	 $this->assertInstanceOf('\tjsd\collections\iterators\Iterator', $this->object->getIterator());
     }
     
     public function testClearRemovesAllElements() {

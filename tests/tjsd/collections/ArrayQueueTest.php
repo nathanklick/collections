@@ -61,7 +61,7 @@ class ArrayQueueTest extends \PHPUnit_Framework_TestCase {
     }
     
     public function testGetIteratorReturnsIterator() {
-        $this->assertInstanceOf('\tjsd\collections\Iterator', $this->arrayQueue->getIterator());
+        $this->assertInstanceOf('\tjsd\collections\iterators\Iterator', $this->arrayQueue->getIterator());
     }
 
     public function testIsEmptyOnEmptyQueueReturnsTrue() {

@@ -61,7 +61,7 @@ class ArrayStackTest extends \PHPUnit_Framework_TestCase {
     }
     
     public function testGetIteratorReturnIterator() {
-        $this->assertInstanceOf('\tjsd\collections\Iterator', $this->arrayStack->getIterator());
+        $this->assertInstanceOf('\tjsd\collections\iterators\Iterator', $this->arrayStack->getIterator());
     }
 
     public function testIsEmptyOnEmptyStackReturnsTrue() {

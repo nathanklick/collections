@@ -4,7 +4,7 @@
  * @copyright Copyright (c) 2012, Jakub Tesárek
  */
 
-namespace tjsd\collections;
+namespace tjsd\collections\iterators;
 
 interface Iterator extends \Iterator {
     

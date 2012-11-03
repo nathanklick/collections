@@ -40,7 +40,7 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testGetIteratorReturnsIterator() {
-        $this->assertInstanceOf('\tjsd\collections\Iterator', $this->arrayObject->getIterator());
+        $this->assertInstanceOf('\tjsd\collections\iterators\Iterator', $this->arrayObject->getIterator());
     }
 
     public function testOffsetExistsOnExistingOffsetReturnsTrue() {

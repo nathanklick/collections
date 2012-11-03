@@ -67,6 +67,6 @@ abstract class ArrayCollection implements Collection {
      * @return \tjsd\collections\ArrayIterator iterater over values in queue
      */
     public function getIterator() {
-        return new ArrayIterator($this->toArray());
+        return new iterators\ArrayIterator($this->toArray());
     }
 }
