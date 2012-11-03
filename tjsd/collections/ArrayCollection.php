@@ -9,7 +9,7 @@ namespace tjsd\collections;
 /**
  * Implements overall functionality of array collection
  */
-abstract class ArrayCollectionAggregate implements Collection {
+abstract class ArrayCollection implements Collection {
     protected $data;
     
     /**

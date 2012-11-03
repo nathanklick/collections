@@ -9,7 +9,7 @@ namespace tjsd\collections;
 /**
  * Array implementation of FIFO collection.
  */
-class ArrayQueue extends ArrayCollectionAggregate implements Queue {
+class ArrayQueue extends ArrayCollection implements Queue {
 
     /**
      * Creates and fills ArrayStack with data.

@@ -9,7 +9,7 @@ namespace tjsd\collections;
 /**
  * Array implementation of LIFO collection.
  */
-class ArrayStack extends ArrayCollectionAggregate implements Stack {
+class ArrayStack extends ArrayCollection implements Stack {
 
     /**
      * Creates and fills ArrayStack with data.

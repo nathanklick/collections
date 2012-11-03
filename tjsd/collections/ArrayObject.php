@@ -9,7 +9,7 @@ namespace tjsd\collections;
 /**
  * Array objects allows working with object as if it's an array.
  */
-class ArrayObject extends ArrayCollectionAggregate implements \ArrayAccess {
+class ArrayObject extends ArrayCollection implements \ArrayAccess {
     
     /**
      * Creates new ArrayObject

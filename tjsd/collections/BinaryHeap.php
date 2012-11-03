@@ -6,7 +6,7 @@
 
 namespace tjsd\collections;
 
-abstract class BinaryHeap extends ArrayCollectionAggregate implements Heap {
+abstract class BinaryHeap extends ArrayCollection implements Heap {
 
     public function __construct(array $initialData = array()) {
 	$this->clear();
