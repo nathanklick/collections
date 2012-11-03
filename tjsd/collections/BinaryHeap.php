@@ -15,7 +15,7 @@ abstract class BinaryHeap extends ArrayCollectionAggregate implements Heap {
 	}
     }
     
-    public function push(types\Numeric $element) {
+    public function push(types\Comparable $element) {
 	$index = $this->lowestFreeIndex();
 	$this->data[$index] = $element;
 	$this->heapifyUp($index);
@@ -107,7 +107,7 @@ abstract class BinaryHeap extends ArrayCollectionAggregate implements Heap {
 	return floor(($childIndex - 1) / 2);
     }
 
-    protected abstract function compareNodes(types\Numeric $firstNode, types\Numeric $secondNode);
+    protected abstract function compareNodes(types\Comparable $firstNode, types\Comparable $secondNode);
     
     public function merge(Heap $mergedHeap) {
 	$resultHeap = clone $this;

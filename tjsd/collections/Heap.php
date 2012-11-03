@@ -7,7 +7,7 @@
 namespace tjsd\collections;
 
 interface Heap extends Collection {
-    public function push(types\Numeric $element);
+    public function push(types\Comparable $element);
     public function poll();
     public function top();
     public function merge(Heap $mergedHeap);

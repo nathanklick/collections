@@ -7,13 +7,7 @@
 namespace tjsd\collections;
 
 class MinHeap extends BinaryHeap {
-    protected function compareNodes(types\Numeric $firstNode, types\Numeric $secondNode) {
-	if($firstNode->getNumericValue() < $secondNode->getNumericValue()) {
-	    return 1;
-	} elseif ($firstNode->getNumericValue() > $secondNode->getNumericValue()) {
-	    return -1;
-	} else {
-	    return 0;
-	}
+    protected function compareNodes(types\Comparable $firstNode, types\Comparable $secondNode) {
+	return -1 * $firstNode->compareTo($secondNode);
     }
 }

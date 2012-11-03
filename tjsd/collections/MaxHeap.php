@@ -7,14 +7,7 @@
 namespace tjsd\collections;
 
 class MaxHeap extends BinaryHeap {
-    protected function compareNodes(types\Numeric $firstNode, types\Numeric $secondNode) {
-	if($firstNode->getNumericValue() > $secondNode->getNumericValue()) {
-	    $result = 1;
-	} elseif ($firstNode->getNumericValue() < $secondNode->getNumericValue()) {
-	    $result = -1;
-	} else {
-	    $result = 0;
-	}
-	return $result;
+    protected function compareNodes(types\Comparable $firstNode, types\Comparable $secondNode) {
+	return $firstNode->compareTo($secondNode);
     }
 }

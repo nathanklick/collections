@@ -16,17 +16,10 @@ abstract class BinaryHeapTest_aggregate extends \PHPUnit_Framework_TestCase {
     protected function setUp() {
 	$this->object = $this->createTestObject();
 	
-	$this->element1 = $this->getMock('\tjsd\collections\types\Numeric', array('getNumericValue'));
-	$this->element1->expects($this->any())->method('getNumericValue')->will($this->returnValue(1));
-	
-	$this->element2 = $this->getMock('\tjsd\collections\types\Numeric', array('getNumericValue'));
-	$this->element2->expects($this->any())->method('getNumericValue')->will($this->returnValue(2));
-	
-	$this->element3 = $this->getMock('\tjsd\collections\types\Numeric', array('getNumericValue'));
-	$this->element3->expects($this->any())->method('getNumericValue')->will($this->returnValue(3));
-	
-	$this->element4 = $this->getMock('\tjsd\collections\types\Numeric', array('getNumericValue'));
-	$this->element4->expects($this->any())->method('getNumericValue')->will($this->returnValue(4));
+	$this->element1 = new types\NumericContainer(1);
+	$this->element2 = new types\NumericContainer(2);
+	$this->element3 = new types\NumericContainer(3);
+	$this->element4 = new types\NumericContainer(4);
     }
     
     protected abstract function createTestObject();
