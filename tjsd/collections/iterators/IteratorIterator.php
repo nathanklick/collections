@@ -36,7 +36,7 @@ abstract class IteratorIterator implements Iterator, \OuterIterator {
     /**
      * {@inheritdoc}
      * 
-     * @throws tjsd\collections\exceptions\EndOfIteratorException when trying to get value from iterator that reaches its end
+     * @throws tjsd\collections\exceptions\EndOfIteratorException when trying to get key from iterator that reaches its end
      *
      * @return string|boolean|integer|float key at current pointer
      */
@@ -47,7 +47,7 @@ abstract class IteratorIterator implements Iterator, \OuterIterator {
     /**
      * {@inheritdoc}
      * 
-     * @throws tjsd\collections\exceptions\EndOfIteratorException when trying to get value from iterator that reaches its end
+     * @throws tjsd\collections\exceptions\EndOfIteratorException when trying to move internal pointer of iterator that reaches its end
      *
      * @return void
      */
