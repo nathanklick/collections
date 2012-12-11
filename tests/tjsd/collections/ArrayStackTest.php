@@ -117,4 +117,12 @@ class ArrayStackTest extends \PHPUnit_Framework_TestCase {
 	);
         $this->arrayStack->peek();
     }
+    
+    public function testUsesStrongComparisonForSearching() {
+	$element = (object) array(1);
+	$this->arrayStack->push($element);
+	
+	$this->assertFalse($this->arrayStack->contains((object) array(1)));
+	$this->assertTrue($this->arrayStack->contains($element));
+    }
 }

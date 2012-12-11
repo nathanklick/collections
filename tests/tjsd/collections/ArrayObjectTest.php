@@ -132,8 +132,17 @@ class ArrayObjectTest extends \PHPUnit_Framework_TestCase {
     }
     
     public function testElementsAreReturnedAsReference() {
-        $arrayObject = new ArrayObject(array(0 => 0));        
+        $arrayObject = new ArrayObject(array(0 => 0));
         $arrayObject[0]++;
         $this->assertSame(1, $arrayObject->offsetGet(0));
+    }
+    
+    public function testUsesStrongComparisonForSearching() {
+	$arrayObject = new ArrayObject();
+	$element = (object) array(1);
+	$arrayObject[0] = $element;
+	
+	$this->assertFalse($arrayObject->contains((object) array(1)));
+	$this->assertTrue($arrayObject->contains($element));
     }
 }

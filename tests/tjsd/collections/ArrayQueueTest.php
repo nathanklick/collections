@@ -117,4 +117,12 @@ class ArrayQueueTest extends \PHPUnit_Framework_TestCase {
 	);
         $this->arrayQueue->peek();
     }
+    
+    public function testUsesStrongComparisonForSearching() {
+	$element = (object) array(1);
+	$this->arrayQueue->push($element);
+	
+	$this->assertFalse($this->arrayQueue->contains((object) array(1)));
+	$this->assertTrue($this->arrayQueue->contains($element));
+    }
 }

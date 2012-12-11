@@ -93,4 +93,11 @@ abstract class BinaryHeapTest_aggregate extends \PHPUnit_Framework_TestCase {
           'This test has not been implemented yet.'
         );
     }
+    
+    public function testUsesStrongComparisonForSearching() {
+	$element = new types\NumericContainer(1);
+	$this->object->push($element);
+	$this->assertFalse($this->object->contains(new types\NumericContainer(1)));
+	$this->assertTrue($this->object->contains($element));
+    }
 }

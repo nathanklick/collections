@@ -69,4 +69,16 @@ abstract class ArrayCollection implements Collection {
     public function getIterator() {
         return new iterators\ArrayIterator($this->toArray());
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function contains($element) {
+	foreach($this->data as $item) {
+	    if($item === $element) {
+		return TRUE;
+	    }
+	}
+	return FALSE;
+    }
 }

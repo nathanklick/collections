@@ -36,6 +36,14 @@ interface Collection extends \Countable, \IteratorAggregate {
     public function clear();
     
     /**
+     * Searches for given element in collection
+     * 
+     * @param $element
+     * @return boolean TRUE if colelction contains given element
+     */
+    public function contains($element);
+    
+    /**
      * Creates collection from data from given Collection
      * 
      * @param \tjsd\collections\Collection $initialData
