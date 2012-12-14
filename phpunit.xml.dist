@@ -14,21 +14,12 @@
     colors="true"
     printerClass="PHPUnit_TextUI_ResultPrinter"
 >
+    <testsuite name="tjsd/collections">
+	<directory suffix="Test.php">./tests</directory>
+    </testsuite>
     <logging>
 	<log type="coverage-html" target="./tests/reports/coverage-html" highlight="true" />
-	<log type="coverage-text" target="./tests/reports/coverage-text.txt" />
-	<log type="coverage-php" target="./tests/reports/coverage.serialized"/>
 	<log type="testdox-html" target="./tests/reports/testdox.html"/>
 	<log type="testdox-text" target="./tests/reports/testdox.txt"/>
-	<log type="plain" target="./tests/reports/plain.txt"/>
     </logging>
-    <filter>
-        <whitelist>
-            <directory>./</directory>
-            <exclude>
-                <directory>./Tests</directory>
-                <directory>./vendor</directory>
-            </exclude>
-        </whitelist>
-    </filter>
 </phpunit>
