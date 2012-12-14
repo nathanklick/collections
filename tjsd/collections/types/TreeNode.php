@@ -9,7 +9,7 @@ namespace tjsd\collections\types;
 use InvalidArgumentException;
 use tjsd\collections\exceptions\DuplicateEntryException;
 
-class TreeNode implements Comparable {
+class TreeNode implements Comparable, \tjsd\collections\Tree {
     private $value;
     private $parent;
     private $leftChild;
@@ -24,7 +24,11 @@ class TreeNode implements Comparable {
 	    throw new InvalidArgumentException(sprintf('Cannot compare %s to %s.', __CLASS__, get_class($compared)));
 	}
 	
-	return $this->value->compareTo($compared->getValue());
+	return $this->compareToValue($compared->getValue());
+    }
+    
+    protected function compareToValue(Comparable $comparedValue) {
+	return $this->value->compareTo($comparedValue);
     }
     
     public function getValue() {
@@ -99,19 +103,19 @@ class TreeNode implements Comparable {
 	$this->value = $value;
     }
     
-    public function insert(TreeNode $childNode) {
-	$compareResult = $childNode->compareTo($this);
-	if($compareResult > 0) {
+    public function insert(Comparable $element) {
+	$compareResult = $this->compareToValue($element);
+	if($compareResult < 0) {
 	    if($this->hasRightChild()) {
-		$this->rightChild()->insert($childNode);
+		$this->rightChild()->insert($element);
 	    } else {
-		$this->setRightChild($childNode);
+		$this->setRightChild(new self($element));
 	    }
-	} elseif($compareResult < 0) {
+	} elseif($compareResult > 0) {
 	    if($this->hasLeftChild()) {
-		$this->leftChild()->insert($childNode);
+		$this->leftChild()->insert($element);
 	    } else {
-		$this->setLeftChild($childNode);
+		$this->setLeftChild(new self($element));
 	    }
 	} else {
 	   throw new DuplicateEntryException('Value is allready present - cannot insert two elements with same value.'); 
@@ -119,20 +123,20 @@ class TreeNode implements Comparable {
     }
     
     public function find(Comparable $element) {
-	$compareResult = $element->compareTo($this->getValue());
+	$compareResult = $this->compareToValue($element);
 	if($compareResult === 0) {
 	    return $this->getValue();
-	} elseif($compareResult > 0 && $this->hasRightChild()) {
+	} elseif($compareResult < 0 && $this->hasRightChild()) {
 	    return $this->rightChild()->find($element);
-	} elseif($compareResult < 0 && $this->hasLeftChild()) {
+	} elseif($compareResult > 0 && $this->hasLeftChild()) {
 	    return $this->leftChild()->find($element);
 	}
     }
     
     public function remove(Comparable $element) {
-	$compareResult = $element->compareTo($this->getValue());
-	if($compareResult >= 0 && $this->hasRightChild()) {
-	    if($this->rightChild()->getValue()->compareTo($element) === 0) {
+	$compareResult = $this->compareToValue($element);
+	if($compareResult <= 0 && $this->hasRightChild()) {
+	    if($this->rightChild()->compareToValue($element) === 0) {
 		if($this->rightChild()->hasRightChild()) {
 		    $element = $this->rightChild()->rightChild()->getValue();
 		    $this->rightChild()->setValue($element);
@@ -147,8 +151,8 @@ class TreeNode implements Comparable {
 	    if($this->hasRightChild()) {
 		$this->rightChild()->remove($element);
 	    }
-	} elseif($compareResult <= 0 && $this->hasLeftChild()) {
-	    if($this->leftChild()->value()->compareTo($element) === 0) {
+	} elseif($compareResult >= 0 && $this->hasLeftChild()) {
+	    if($this->leftChild()->compareToValue($element) === 0) {
 		if($this->leftChild()->hasLeftChild()) {
 		    $element = $this->leftChild()->leftChild()->getValue();
 		    $this->leftChild()->setValue($element);
@@ -170,5 +174,36 @@ class TreeNode implements Comparable {
 	return 1
 	    + ($this->hasLeftChild() ? $this->leftChild()->count() : 0)
 	    + ($this->hasRightChild() ? $this->rightChild()->count() : 0);
+    }
+
+    public function __toString() {
+	return serialize($this->toArray());
+    }
+
+    public function clear() {
+	$this->leftChild = NULL;
+	$this->rightChild = NULL;
+    }
+
+    public function contains($element) {
+	return !is_null($this->find($element));
+    }
+
+    public function getIterator() {
+	return new \tjsd\collections\iterators\ArrayIterator($this->toArray());
+    }
+
+    public function isEmpty() {
+	return FALSE;
+    }
+
+    public function toArray() {
+	
+    }
+
+    public static function fromCollection(\tjsd\collections\Collection $initialData) {
+	foreach($initialData as $element) {
+	    $this->insert($element);
+	}
     }
 }

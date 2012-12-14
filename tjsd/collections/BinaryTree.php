@@ -10,14 +10,10 @@ class BinaryTree implements Tree {
     private $rootNode;
 
     public function insert(types\Comparable $element) {
-	$this->insertNode(new types\TreeNode($element));
-    }
-    
-    protected function insertNode(types\TreeNode $node) {
 	if($this->isEmpty()) {
-	    $this->rootNode = $node;
+	    $this->rootNode = new types\TreeNode($element);
 	} else {
-	    $this->rootNode->insert($node);
+	    $this->rootNode->insert($element);
 	}
     }
     
