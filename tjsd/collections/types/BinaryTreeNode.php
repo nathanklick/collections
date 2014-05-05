@@ -9,7 +9,7 @@ namespace tjsd\collections\types;
 use InvalidArgumentException;
 use tjsd\collections\exceptions\DuplicateEntryException;
 
-class TreeNode implements Comparable, \tjsd\collections\Tree {
+class BinaryTreeNode implements Comparable, \tjsd\collections\Tree {
     private $value;
     private $parent;
     private $leftChild;
