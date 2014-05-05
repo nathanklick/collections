@@ -9,7 +9,7 @@
         {
             "name": "Nathan Klick",
             "email": "nathanklick@yahoo.com"
-        },
+        }
     ],
     "autoload": {
         "psr-0": { "tjsd\\collections": "" }
