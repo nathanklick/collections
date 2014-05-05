@@ -1,15 +1,15 @@
 {
-    "name": "tjsd/collections",
+    "name": "nathanklick/collections",
     "type": "library",
     "license": "BSD-3-Clause",
     "description": "Library providing collection classes which you can use instead of SPL data-structures.",
     "keywords": ["collections", "array", "queue", "stack", "heap","deque","tree","hashmap"],
-    "homepage": "https://github.com/JakubTesarek/collections",
+    "homepage": "https://github.com/nathanklick/collections",
     "authors": [
         {
-            "name": "Jakub Tesárek",
-            "email": "programmer@jakubtesarek.cz"
-        }
+            "name": "Nathan Klick",
+            "email": "nathanklick@yahoo.com"
+        },
     ],
     "autoload": {
         "psr-0": { "tjsd\\collections": "" }
