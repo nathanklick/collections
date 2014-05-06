@@ -33,6 +33,10 @@ class NaryTreeNode implements Comparable, \tjsd\collections\Tree {
     public function getValue() {
 		return $this->value;
     }
+
+	public function getParent() { 
+		return $this->parent;
+	}
         
     public function setParent(NaryTreeNode $parentNode) {
 		$this->parent = $parentNode;
@@ -58,6 +62,19 @@ class NaryTreeNode implements Comparable, \tjsd\collections\Tree {
 		return !$this->hasChildren();
 	}
     
+	public function depth() {
+		$depth = 0;
+		
+		$currentNode = $this;
+		
+		while (!is_null($currentNode->getParent())) {
+			$depth++;
+			$currentNode = $currentNode->getParent();
+		}
+		
+		return $depth;
+	}
+	
     protected function setValue(Comparable $value) {
 		$this->value = $value;
     }
