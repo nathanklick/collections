@@ -32,7 +32,7 @@ class BinaryTree implements Tree {
 	return FALSE;
     }
 
-    public function find(types\Comparable$element) {
+    public function find(types\Comparable $element) {
 	if(($element instanceof types\Comparable) && !$this->isEmpty()) {
 	    return $this->rootNode->find($element);
 	}

@@ -53,7 +53,7 @@ class BinaryTreeNode implements Comparable, \tjsd\collections\Tree {
 	$this->leftChild = NULL;
     }
     
-    public function setParent(TreeNode $parentNode) {
+    public function setParent(BinaryTreeNode $parentNode) {
 	$this->parent = $parentNode;
     }
     
