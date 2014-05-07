@@ -91,6 +91,8 @@ class NaryTreeNode implements Comparable, \tjsd\collections\Tree {
 			$item = new self($element);
 			$item->setParent($this);
 			$this->children[] = $item;
+			
+			return $item;
 		} else {
 		   throw new DuplicateEntryException('Value is already present - cannot insert two elements with same value.'); 
 		}

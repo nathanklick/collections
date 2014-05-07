@@ -12,8 +12,10 @@ class NaryTree implements Tree {
     public function insert(types\Comparable $element) {
 		if($this->isEmpty()) {
 			$this->rootNode = new types\NaryTreeNode($element);
+			
+			return $this->rootNode;
 		} else {
-			$this->rootNode->insert($element);
+			return $this->rootNode->insert($element);
 		}
     }
     
@@ -24,6 +26,10 @@ class NaryTree implements Tree {
     public function clear() {
 		$this->rootNode = null;
     }
+	
+	public function root() {
+		return $this->rootNode;
+	}
 
     public function contains($element) {
 		if($element instanceof types\Comparable) {
